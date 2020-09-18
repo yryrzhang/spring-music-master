@@ -1,0 +1,74 @@
+spring:
+  jpa:
+    generate-ddl: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+---
+spring:
+  profiles: cloud
+  datasource:
+    url: jdbc:mysql://${test-service-key5.host}:3306/${test-service-key5.database}?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf-8
+    username: ${test-service-key5.username}
+    password: ${test-service-key5.password}
+    #    driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL55Dialect
+services:
+  test-service-key5:
+    username: ${test-service-key5.username}
+    password: ${test-service-key5.password}
+    host: ${test-service-key5.host}
+    port: 3306
+#spring:
+#  profiles: cloud
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/test?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf-8
+#    username: root
+#    password: root
+#    #    driver-class-name: org.mariadb.jdbc.Driver
+#    driver-class-name: org.mariadb.jdbc.Driver
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL55Dialect
+#services:
+#  test-service-key5:
+#    username: root
+#    password: root
+#    host: localhost
+#    port: 3306
+#spring:
+#  profiles: mysql
+#  datasource:
+#    url: "jdbc:mysql://localhost/music"
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username:
+#    password:
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL55Dialect
+
+---
+#spring:
+#  profiles: postgres
+#  datasource:
+#    url: "jdbc:postgresql://localhost/music"
+#    driver-class-name: org.postgresql.Driver
+#    username: postgres
+#    password:
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.ProgressDialect
